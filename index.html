@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameNest | متجر الحسابات والفواكه</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #0d081a;
+      color: #ddd;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header img {
+      max-width: 180px;
+    }
+    h1 {
+      color: #b38aff;
+      margin: 10px 0;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    select, input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #261b4d;
+      color: #fff;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    button {
+      background: #a077ff;
+      margin-top: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #8859ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="logo.png" alt="GameNest Logo" />
+      <h1>متجر GameNest</h1>
+      <p>بيع حسابات وفواكه نادرة في Roblox</p><p style="color:#ff8080;font-weight:bold">※ أنا المقابل مادي ※</p>
+    </header>
+    <form id="orderForm">
+      <label for="name">اسمك:</label>
+      <input type="text" id="name" name="name" placeholder="اكتب اسمك" required />
+
+      <label for="item">وش تبي تشتري؟</label>
+      <select id="item" name="item" required>
+        <option value="" disabled selected>اختر نوع المنتج</option>
+        <option value="حساب Grow a Garden">حساب Grow a Garden</option>
+        <option value="حساب Blox Fruit">حساب Blox Fruit</option>
+        <option value="فاكهة نادرة في Blox Fruit">فاكهة نادرة في Blox Fruit</option>
+        <option value="فاكهة نادرة في Grow a Garden">فاكهة نادرة في Grow a Garden</option>
+        <option value="حيوان نادر في Grow a Garden">حيوان نادر في Grow a Garden</option>
+      </select>
+
+      <label for="notes">ملاحظات (اختياري):</label>
+      <textarea id="notes" name="notes" placeholder="مثلاً: أبغى الحساب فيه المستوى عالي..."></textarea>
+
+      <button type="submit">أرسل الطلب عبر واتساب</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = encodeURIComponent(form.name.value.trim());
+      const item = encodeURIComponent(form.item.value);
+      const notes = encodeURIComponent(form.notes.value.trim());
+
+      let message = `مرحبًا، لدي طلب من متجر GameNest:%0A`;
+      message += `الاسم: ${name}%0A`;
+      message += `الطلب: ${item}%0A`;
+      if (notes) message += `ملاحظات: ${notes}%0A`;
+
+      const waNumber = "971525314747";
+      const waURL = `https://wa.me/${waNumber}?text=${message}`;
+      window.open(waURL, '_blank');
+    });
+  </script>
+</body>
+</html>
